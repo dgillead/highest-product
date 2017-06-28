@@ -32,12 +32,13 @@
 
 function productFinder(array) {
   array = array.sort();
+  let product = 0;
   if (allNegative(array)) {
-    // remove last three elements from the array
+    console.log(array.slice((array.length - 4), (array.length - 1)));
   } else {
-    findInMixedArray(array);
+    product = findInMixedArray(array);
   }
-
+  console.log(product);
 }
 
 function allNegative(array) {
@@ -53,7 +54,17 @@ function allNegative(array) {
 }
 
 function findInMixedArray(array) {
-  
+  let highestPositiveInteger = array.pop();
+  let item1 = array[0];
+  let item2 = array[1];
+  let item3 = array[array.length - 1];
+  let item4 = array[array.length - 2];
+
+  if (item1 * item2 > item3 * item4) {
+    return item1 * item2 * highestPositiveInteger;
+  } else {
+    return item3 * item4 * highestPositiveInteger;
+  }
 }
 
-productFinder([-2,-1,1,2]);
+productFinder([-2,-1,-3, 0, 1, 2]);
